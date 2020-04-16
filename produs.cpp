@@ -1,5 +1,8 @@
 #include "produs.h"
 #include <string.h>
+#include <ostream>
+#include <istream>
+using namespace std;
 
 //Constructor
 //out: Un produs gol
@@ -65,6 +68,8 @@ Produs::~Produs() {
 
 	delete[] nume;
 	delete[] ingrediente;
+	nume = NULL;
+	ingrediente = NULL;
 }
 
 // Getter pentru cod
@@ -147,4 +152,35 @@ Produs& Produs::operator=(const Produs& p) {
 //out: true daca cele 2 sunt egale, false altfel
 bool Produs::operator==(const Produs& p) {
 	return (id == p.id);
+}
+
+bool Produs::operator!() {
+
+	if (nume == NULL or ingrediente == NULL or strlen(nume) == 0 or strlen(ingrediente) == 0 or id == 0 or pret == 0)
+		return true;
+	return false;
+}
+
+ostream& operator<<(ostream& os, const Produs& p) {
+	os << p.id << " " << p.pret << " " << p.nume << " "<< p.ingrediente;
+	return os;
+}
+
+istream& operator>>(istream& is, Produs& p) {
+	
+	char* nume = new char[20];
+	char* ingr = new char[20];
+	int id = 0;
+	double pret = 0;
+	is >> id;
+	is >> pret;
+	is >> nume;
+	is >> ingr;
+	p.set_cod(id);
+	p.set_pret(pret);
+	p.set_nume(nume);
+	p.set_ingrediente(ingr);
+	delete[] nume;
+	delete[] ingr;
+	return is;
 }

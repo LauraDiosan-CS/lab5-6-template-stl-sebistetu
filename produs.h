@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+using namespace std;
 class Produs {
 
 private:
@@ -20,5 +22,8 @@ public:
 	void set_nume(char* n);
 	void set_ingrediente(char* n);
 	Produs& operator=(const Produs& p);
-	bool operator==(const Produs& p);
+	bool operator==(const Produs& p);	
+	bool operator!();
+	friend ostream& operator<<(ostream& os, const Produs& p);
+	friend istream& operator>>(istream& is, Produs& p);
 };

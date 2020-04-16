@@ -1,0 +1,2 @@
+100 3000 iulia sare,faina
+300 10000 alina faina,oua
